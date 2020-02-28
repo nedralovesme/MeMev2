@@ -12,13 +12,11 @@ import Foundation
 class MemeTableView: UITableViewController {
     
     var memes: [Meme]!
+    @IBOutlet weak var button: UIBarButtonItem!
     
        override func viewDidLoad()  {
             super.viewDidLoad()
-        
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            memes = appDelegate.savedMeme
-        }
+                }
 
     override func viewWillAppear(_ animated: Bool) {
         
@@ -34,18 +32,16 @@ class MemeTableView: UITableViewController {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        memes.count
-    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath:IndexPath) -> UITableViewCell {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        memes = appDelegate.savedMeme
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemeCell")
-        let _ = self.memes[indexPath.row]
+        let meme = self.memes[indexPath.row]
             
         cell?.imageView?.contentMode = .scaleToFill
-        
+        cell?.imageView?.image = meme.memedImage
         return cell!
     }
-    }
-
     
+}
+
