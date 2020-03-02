@@ -23,7 +23,7 @@ class MemeCollectionViewCollectionViewController: UICollectionViewController {
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "MemeCell")
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        memes = appDelegate.savedMeme
+        memes = appDelegate.memes
     }
 
     // MARK: UICollectionViewDataSource

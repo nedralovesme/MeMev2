@@ -21,6 +21,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     let imagePicker = UIImagePickerController()
+    var memes = [Meme]()
 
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -155,7 +156,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             let object = UIApplication.shared.delegate
             let appDelegate = object as! AppDelegate
-            appDelegate.savedMeme.append(meme)
+            appDelegate.memes.append(meme)
         }
     
     //Sharing Meme via Activity View

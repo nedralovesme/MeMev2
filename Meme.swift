@@ -15,6 +15,12 @@ import UIKit
              var bottomTextField: String
              var pickedImage: UIImage
              var memedImage: UIImage
+        
+//        init(dictionary: [String : UIImage]){
+//            self.memedImage = dictionary[meme.memedImage]
+//        }
+//        
          }
+
 
 
