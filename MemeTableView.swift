@@ -29,7 +29,7 @@ class MemeTableView: UITableViewController {
             
             // Setting the height of each table cell
             self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: "MemeCell")
-            self.tableView!.rowHeight = 70
+            self.tableView!.rowHeight = 120
         }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -42,12 +42,12 @@ class MemeTableView: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath:IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MemeCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MemeCell")!
         let meme = self.memes[indexPath.row]
             
-//        cell?.imageView?.contentMode = .scaleToFill
-        cell?.imageView?.image = meme.memedImage
-        return cell!
+        cell.imageView?.contentMode = .scaleToFill
+        cell.imageView?.image = meme.memedImage
+        return cell
     }
     
 }
