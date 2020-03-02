@@ -7,18 +7,20 @@
 //
 
 import UIKit
+import Foundation
 
-private let reuseIdentifier = "MemeCell"
-
-class MemeCollectionViewCollectionViewController: UICollectionViewController {
+class MemeCollectionViewController: UICollectionViewController {
+        
+    @IBOutlet weak var memeView: UIImageView!
+    @IBOutlet weak var editButton: UIButton!
     
     var memes: [Meme]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "MemeCell")
@@ -26,12 +28,9 @@ class MemeCollectionViewCollectionViewController: UICollectionViewController {
         memes = appDelegate.memes
     }
 
-    // MARK: UICollectionViewDataSource
-
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
