@@ -13,7 +13,8 @@ class MemeTableView: UITableViewController {
     
     var memes: [Meme]!
     @IBOutlet weak var button: UIBarButtonItem!
-    
+    @IBOutlet weak var new: UIButton!
+
        override func viewDidLoad()  {
             super.viewDidLoad()
 
