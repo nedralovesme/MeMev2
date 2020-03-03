@@ -23,18 +23,19 @@ class MemeCollectionViewController: UICollectionViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        collectionView!.reloadData()
+
 //        self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
+        collectionView!.reloadData()
 
     }
 
     override func numberOfSections (in collectionView: UICollectionView) -> Int {
-        return memes.count
+        return 1
     }
 
     override func collectionView (_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -46,9 +47,20 @@ class MemeCollectionViewController: UICollectionViewController{
         let meme = self.memes[indexPath.row]
             
         cell.collectionImageView.image = meme.memedImage
-   
+        cell.collectionImageView.contentMode = .scaleToFill
+
         return cell
 
     }
     
+    // Setup the presentation of the Detail View
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        let detailController = self.storyboard!.instantiateViewController(identifier: "MemeDetailViewController") as! MemeDetailViewController
+        detailController.selectedIndex = indexPath.row
+        detailController.highlightedMeme = memes[indexPath.row]
+        
+        self.navigationController!.pushViewController(detailController, animated: true)
+    }
 }
+
