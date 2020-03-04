@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorViewController.swift
 //  MeMeOG
 //
 //  Created by Nedra Mevoli on 2/6/20.
@@ -9,7 +9,7 @@
 import UIKit
 import MobileCoreServices
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var pickImageView: UIImageView!
     @IBOutlet weak var cameraButton: UIButton!
@@ -21,6 +21,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     let imagePicker = UIImagePickerController()
+    var memes = [Meme]()
 
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -155,7 +156,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             let object = UIApplication.shared.delegate
             let appDelegate = object as! AppDelegate
-            appDelegate.savedMeme.append(meme)
+            appDelegate.memes.append(meme)
         }
     
     //Sharing Meme via Activity View
