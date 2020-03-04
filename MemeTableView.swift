@@ -12,15 +12,17 @@ import Foundation
 class MemeTableView: UITableViewController {
     
     var memes: [Meme]!
-    
+    @IBOutlet weak var button: UIBarButtonItem!
+    @IBOutlet weak var new: UIButton!
+
        override func viewDidLoad()  {
             super.viewDidLoad()
-        
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            memes = appDelegate.savedMeme
-        }
+
+                }
 
     override func viewWillAppear(_ animated: Bool) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        memes = appDelegate.memes
         
         // Refresh the TableViewController
             self.tableView!.reloadData()
@@ -35,17 +37,18 @@ class MemeTableView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        memes.count
+        return memes.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath:IndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemeCell")
-        let _ = self.memes[indexPath.row]
+        let meme = self.memes[indexPath.row]
             
-        cell?.imageView?.contentMode = .scaleToFill
-        
+//        cell?.imageView?.contentMode = .scaleToFill
+        cell?.imageView?.image = meme.memedImage
         return cell!
     }
-    }
-
     
+}
+
