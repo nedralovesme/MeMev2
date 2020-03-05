@@ -15,19 +15,7 @@ class MemeCollectionViewController: UICollectionViewController{
     
     var memes: [Meme]!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-//        collectionView.register(UINib(nibName: "MemeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: MemeCollectionViewCell.ReuseIdentifier)
-//        collectionView.register(MemeCollectionViewCell.self, forCellWithReuseIdentifier: MemeCollectionViewCell.ReuseIdentifier)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
-
-//        self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
         collectionView!.reloadData()
@@ -47,14 +35,14 @@ class MemeCollectionViewController: UICollectionViewController{
         let meme = self.memes[indexPath.row]
             
         cell.collectionImageView.image = meme.memedImage
-        cell.collectionImageView.contentMode = .scaleToFill
+        cell.collectionImageView.contentMode = .scaleAspectFit
+        
 
         return cell
 
     }
     
     // Setup the presentation of the Detail View
-    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         let detailController = self.storyboard!.instantiateViewController(identifier: "MemeDetailViewController") as! MemeDetailViewController
         detailController.selectedIndex = indexPath.row

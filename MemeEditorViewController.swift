@@ -98,6 +98,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             imagePicker.delegate = self
             imagePicker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
             shareButton.isEnabled = true
+            imagePicker.allowsEditing = true
             present (imagePicker, animated: true, completion: nil)
         }
 
@@ -114,8 +115,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         func imagePickerController (_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             dismiss(animated: true, completion: nil)
             
-            if let pickedImage = info[UIImagePickerController.InfoKey.originalImage]as? UIImage {
-                pickImageView.contentMode = .scaleAspectFit
+            if let pickedImage = info[UIImagePickerController.InfoKey.editedImage]as? UIImage {
+                pickImageView.contentMode = .scaleAspectFill
+//                pickImageView.layer.masksToBounds = true
                 pickImageView.image = pickedImage }
             }
     
@@ -129,8 +131,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                  topToolbar.isHidden = hidden
              }
             hideToolbars(hidden: true)
-            UIGraphicsBeginImageContext(self.view.frame.size)
-            view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+            UIGraphicsBeginImageContext(self.view.bounds.size)
+            view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
             let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
             hideToolbars(hidden: false)

@@ -44,7 +44,6 @@ class MemeTableView: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemeCell")!
         let meme = memes[indexPath.row]
             
-//        cell.imageView?.contentMode = .scaleToFill
         cell.imageView?.image = meme.memedImage
         cell.textLabel?.text = "\(meme.topTextField) ... " + "\(meme.bottomTextField)"
     
